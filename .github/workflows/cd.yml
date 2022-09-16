@@ -18,7 +18,7 @@ jobs:
         with:
           host: 82.180.152.243
           username: u392186142
-          password: !12345Inotive
+          pass: !12345Inotive
           port: 22
           script:
             cd domains/inotive.id/public_html/pertanian/
