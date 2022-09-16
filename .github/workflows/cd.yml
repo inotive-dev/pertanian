@@ -17,9 +17,9 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: 82.180.152.243
-          username: u392186142
-          pass: !12345Inotive
+          username: "u392186142"
+          password: "!12345Inotive"
           port: 22
-          script:
+          script: |
             cd domains/inotive.id/public_html/pertanian/
             git pull origin main
