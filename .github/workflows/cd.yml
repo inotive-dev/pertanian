@@ -9,7 +9,9 @@ on:
       - main
 
 jobs:
-  ci:
+  cd:
+    runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@v2
 
