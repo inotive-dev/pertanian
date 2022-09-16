@@ -1,0 +1,5 @@
+workflows:
+- workflow: cd
+  notifications:
+  - email: homer.simpson@springfield.com
+    filter: filter: [ requested, succeeded, failed ]
