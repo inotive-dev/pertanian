@@ -27,7 +27,7 @@ class AuthController extends Controller
     {
         // dd($request->all());
         if (Auth::attempt(['email' => $request->email, 'password' => $request->pass])) {
-            return redirect()->route('manajemen-user.index')->with('OK','Selamat datang '.Auth::user()->name);
+            return redirect()->route('dashboard.index')->with('OK','Selamat datang '.Auth::user()->name);
         } else {
             return redirect()->back()->with('ERR','Email atau password anda salah');
         }
