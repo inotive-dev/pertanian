@@ -5,7 +5,7 @@
 				<form class="login100-form validate-form" action="login-validate" method="POST">
                     @csrf
 					<span class="login100-form-title p-b-43">
-						Login untuk masuk test cd 
+						Login untuk masuk
 					</span>
 					
 					
