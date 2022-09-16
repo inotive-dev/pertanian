@@ -13,7 +13,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: octogeeks/send-workflow-notifications@v1
       with:
-        smtp-server: smtp.hostinger.com
-        smtp-user: pertanian@inotive.id
-        smtp-password: !12345Pertanian
+        smtp-server: "smtp.hostinger.com"
+        smtp-user: "pertanian@inotive.id"
+        smtp-password: "!12345Pertanian"
         configuration: ./.github/workflow-notifications.yml
