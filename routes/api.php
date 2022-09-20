@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\SaranController;
+use App\Http\Controllers\API\LaporanController;
 use App\Http\Controllers\API\AuthController;
 
 /*
@@ -30,6 +31,6 @@ Route::post('saran',[SaranController::class,'storeSaran']);
 
 
 
-Route::group(['middleware' => ['sanctum']], function () {
-    //route
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('laporan',[LaporanController::class,'storeLaporan']);
 });
