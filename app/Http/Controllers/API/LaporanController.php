@@ -5,6 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Laporan;
+use App\Models\Village;
+use App\Models\User;
+use App\Models\Comodity;
 use Validator;
 
 class LaporanController extends Controller
@@ -51,5 +54,59 @@ class LaporanController extends Controller
             'message' => 'Berhasil menyimpan laporan',
             'data' => $data
         ],201);
+    }
+
+    public function index(Request $request)
+    {
+        $data['fruits'] = Comodity::where('type','buah')
+        ->get();
+
+        foreach ($data['fruits'] as $key => $value) {
+            $laporan['luas_tanam'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('luas_tanam');
+            $laporan['tanam_hasil'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('tanam_hasil');
+            $laporan['jumlah_produksi'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('jumlah_produksi');
+            $laporan['provitas'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('provitas');
+            $laporan['harga_produsen'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('harga_produsen');
+            $laporan['harga_grosir'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('harga_grosir');
+            $laporan['harga_eceran'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('harga_eceran');
+    
+            $value['laporan'] = $laporan;
+        }
+
+        $data['vegetables'] = Comodity::where('type','sayur')
+        ->get();
+
+        foreach ($data['vegetables'] as $key => $value) {
+            $laporan['luas_tanam'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('luas_tanam');
+            $laporan['tanam_hasil'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('tanam_hasil');
+            $laporan['jumlah_produksi'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('jumlah_produksi');
+            $laporan['provitas'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('provitas');
+            $laporan['harga_produsen'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('harga_produsen');
+            $laporan['harga_grosir'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('harga_grosir');
+            $laporan['harga_eceran'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('harga_eceran');
+        
+            $value['laporan'] = $laporan;
+        }
+
+        $data['biopharmaceuticals'] = Comodity::where('type','biofarmaka')
+        ->get();
+
+        foreach ($data['biopharmaceuticals'] as $key => $value) {
+            $laporan['luas_tanam'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('luas_tanam');
+            $laporan['tanam_hasil'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('tanam_hasil');
+            $laporan['jumlah_produksi'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('jumlah_produksi');
+            $laporan['provitas'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('provitas');
+            $laporan['harga_produsen'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('harga_produsen');
+            $laporan['harga_grosir'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('harga_grosir');
+            $laporan['harga_eceran'] = Laporan::where('is_verified',1)->where('comodity_id',$value->id)->sum('harga_eceran');
+        
+            $value['laporan'] = $laporan;
+        }
+
+        return response()->json([
+            'statusCode' => 200,
+            'message' => 'Berhasil get data laporan',
+            'data' => $data
+        ], 200);
     }
 }

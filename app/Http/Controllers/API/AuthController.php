@@ -12,6 +12,14 @@ use Mail;
 
 class AuthController extends Controller
 {
+    public function notAuthenticated(Type $var = null)
+    {
+        return response()->json([
+            'statusCode' => 401,
+            'message' => 'unauthorized'
+        ], 401);
+    }
+
     public function checkEmailAvailableUser($email)
     {
         $dataUser = User::where('email', $email)->first();
@@ -96,8 +104,8 @@ class AuthController extends Controller
 
         $data['user'] = $checkUser;
         $data['otp'] = $checkUser->otp;
-
-        Mail::to($request->email)->send(new EmailResetPassword($data));
+        // dd($checkUser->email);
+        Mail::to($checkUser->email)->send(new EmailResetPassword($data));
         return response()->json([
             'statusCode' => 201,
             'message' => 'Silahkan cek email anda!'

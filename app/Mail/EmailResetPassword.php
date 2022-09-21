@@ -23,7 +23,7 @@ class EmailResetPassword extends Mailable
   */
   public function build()
   {
-    $address = 'pertanian@inotive.id';
+    $address = 'no-reply@pertanian.inotive.id';
     $subject = 'Reset Password';
     $name = "PERTANIAN";
 

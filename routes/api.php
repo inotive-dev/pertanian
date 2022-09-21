@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\SaranController;
 use App\Http\Controllers\API\LaporanController;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +33,13 @@ Route::post('saran',[SaranController::class,'storeSaran']);
 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
+    // laporan
+    Route::get('laporan',[LaporanController::class,'index']);
     Route::post('laporan',[LaporanController::class,'storeLaporan']);
+
+    // profile
+    Route::post('update-profile',[ProfileController::class,'updateProfile']);
+    Route::post('get-profile',[ProfileController::class,'getProfile']);
 });
+
+Route::get('/not-authenticated', [AuthController::class, 'notAuthenticated'])->name('not-authenticated');
