@@ -36,7 +36,9 @@ Route::post('saran',[SaranController::class,'storeSaran']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
     // laporan
     Route::get('laporan',[LaporanController::class,'index']);
+    Route::get('laporan/{id}',[LaporanController::class,'detailLaporan']);
     Route::post('laporan',[LaporanController::class,'storeLaporan']);
+    Route::post('update-laporan/{id}',[LaporanController::class,'updateLaporan']);
 
     // profile
     Route::post('update-profile',[ProfileController::class,'updateProfile']);

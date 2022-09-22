@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Mail;
+use Auth;
 use App\Models\Laporan;
 use App\Models\Village;
 use App\Models\User;
@@ -63,6 +64,7 @@ class LaporanController extends Controller
     public function store(Request $request)
     {
         Laporan::create([
+            'user_id' => Auth::user()->id,
             'desa_id' => $request->desa,
             'comodity_id' => $request->komoditas,
             'luas_tanam' => $request->luas_tanam,
@@ -137,11 +139,17 @@ class LaporanController extends Controller
         return redirect()->back()->with('OK','Berhasil melakukan hapus laporan');
     }
 
-    public function verifyLaporan($id)
+    public function verifyLaporan(Request $request,$id)
     {
+        // dd($request->status);
+        if ($request->status == 'terima') {
+            $status = 1;
+        } else {
+            $status = 2;
+        }
         Laporan::findOrFail($id)
         ->update([
-            'is_verified' => 1
+            'is_verified' => $status
         ]);
 
         return redirect()->back()->with('OK','Berhasil melakukan verifikasi laporan');

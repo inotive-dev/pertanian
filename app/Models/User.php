@@ -35,6 +35,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Kecamatan','id','kecamatan_id');
     }
 
+    public function laporan()
+    {
+        return $this->hasMany('App\Models\Laporan','user_id','id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

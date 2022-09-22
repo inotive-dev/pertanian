@@ -15,6 +15,7 @@ class CreateLaporansTable extends Migration
     {
         Schema::create('laporans', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id');
             $table->bigInteger('desa_id');
             $table->bigInteger('comodity_id');
             $table->string('luas_tanam');

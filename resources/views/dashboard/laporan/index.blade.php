@@ -235,7 +235,7 @@
                                                 <td>{{$not_verified->tanam_hasil}}</td>
                                                 <td>{{$not_verified->jumlah_produksi}}</td>
                                                 <td>{{$not_verified->provitas}}</td>
-                                                <td><a href="{{route('verify-laporan',$not_verified->id)}}" class="btn btn-success">Verifikasi</a></td>
+                                                <td><a href="javascript::void(0)" data-link="{{route('verify-laporan',$not_verified->id)}}" class="btn btn-success btn-verify">Verifikasi</a></td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -445,6 +445,29 @@
           </div>
         </div>
       </div>
+      <div class="modal" tabindex="-1" role="dialog" id="verify-modal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title font-weight-bold">Verifikasi Laporan</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            
+            <div class="modal-body">
+                <p>Silahkan melakukan verifikasi laporan</p>
+                <div class="row text-center">
+                    <a class="btn btn-success btn-terima">Terima</a>
+                    <a class="btn btn-danger btn-tolak">Tolak</a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+            </div>
+          </div>
+        </div>
+      </div>
     <script>
         var tableBuah = $('.table-buah').DataTable({});
         var tableSayur = $('.table-sayur').DataTable({});
@@ -460,6 +483,15 @@
         {
             $("#delete-form").attr("action", $(this).data("link"));
             $("#delete-modal").modal('show');
+        });
+
+        $(".btn-verify").on("click", function()
+        {
+            var linkTerima = $(this).data("link")+"?status=terima";
+            var linkTolak = $(this).data("link")+"?status=tolak";
+            $(".btn-terima").attr("href", linkTerima);
+            $(".btn-tolak").attr("href", linkTolak);
+            $("#verify-modal").modal('show');
         });
 
         $(".btn-edit").on("click", function()
