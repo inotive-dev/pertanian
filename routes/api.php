@@ -6,6 +6,7 @@ use App\Http\Controllers\API\SaranController;
 use App\Http\Controllers\API\LaporanController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\ProfileController;
+use App\Http\Controllers\API\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // profile
     Route::post('update-profile',[ProfileController::class,'updateProfile']);
     Route::post('get-profile',[ProfileController::class,'getProfile']);
+
+    //dashboard
+    Route::get('dashboard',[DashboardController::class,'index']);
+    Route::get('comodities',[DashboardController::class,'getAllComodity']);
 });
 
 Route::get('/not-authenticated', [AuthController::class, 'notAuthenticated'])->name('not-authenticated');
