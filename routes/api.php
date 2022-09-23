@@ -39,6 +39,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('laporan/{id}',[LaporanController::class,'detailLaporan']);
     Route::post('laporan',[LaporanController::class,'storeLaporan']);
     Route::post('update-laporan/{id}',[LaporanController::class,'updateLaporan']);
+    Route::get('laporan-verifikasi',[LaporanController::class,'indexVerifikasi']);
+    Route::delete('delete-laporan/{id}',[LaporanController::class,'destroy']);
 
     // profile
     Route::post('update-profile',[ProfileController::class,'updateProfile']);

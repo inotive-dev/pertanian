@@ -203,4 +203,50 @@ class LaporanController extends Controller
             'data' => Laporan::find($id)
         ],201);
     }
+
+    public function indexVerifikasi(Request $request)
+    {
+        $data['fruits']['laporan'] = Laporan::where('user_id',Auth::user()->id)
+        ->where('is_verified','!=',0)
+        ->wherehas('comodity', function($q){
+            $q->where('type','buah');
+        })
+        ->with('comodity')
+        ->get();
+
+        $data['vegetables'] = Laporan::where('user_id',Auth::user()->id)
+        ->whereYear('created_at',$request->year)
+        ->where('is_verified','!=',0)
+        ->wherehas('comodity', function($q){
+            $q->where('type','sayur');
+        })
+        ->with('comodity')
+        ->get();
+
+        $data['biopharmaceuticals'] = Laporan::where('user_id',Auth::user()->id)
+        ->whereYear('created_at',$request->year)
+        ->where('is_verified','!=',0)
+        ->wherehas('comodity', function($q){
+            $q->where('type','biofarmaka');
+        })
+        ->with('comodity')
+        ->get();
+
+        return response()->json([
+            'statusCode' => 200,
+            'message' => 'Berhasil get data laporan verifikasi',
+            'data' => $data
+        ], 200);
+    }
+
+    public function destroy($id)
+    {
+        Laporan::findOrFail($id)
+        ->delete();
+
+        return response()->json([
+            'statusCode' => 200,
+            'message' => 'Berhasil hapus data laporan',
+        ], 200);
+    }
 }
