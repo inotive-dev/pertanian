@@ -82,7 +82,7 @@
             </div>
             <hr>
             <ul class="nav">
-                <li class="{{Request::is('dashboard','manajemen-user/*') ? 'active' : ''}}">
+                <li class="{{Request::is('dashboard','dashboard/*') ? 'active' : ''}}">
                     <a href="{{route('dashboard.index')}}">
                         <i class="pe-7s-graph"></i>
                         <p>Dashboard</p>
