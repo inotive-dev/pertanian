@@ -3849,7 +3849,7 @@ fieldset[disabled] .btn-neutral.active {
         margin-right: -15px;
     }
     .table-responsive {
-        overflow: visible;
+        overflow: hidden;
     }
     .navbar-nav p {
         line-height: normal;

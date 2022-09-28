@@ -80,6 +80,9 @@
             width: 100% !important;
         }
 
+        .dataTables_wrapper .row{
+            overflow-x: auto !important;
+        }
         
     </style>
 
@@ -128,8 +131,8 @@
                     
                     <div class="tab-panels">
                         <section id="buah" class="tab-panel">
-                            <div class="content" style="overflow-x:auto;">
-                                <table class="table table-buah table-hover">
+                            <div class="content">
+                                <table class="table table-buah table-hover table-responsive">
                                     <thead>
                                         <th class="text-center text-success fw-bold">No</th>
                                         <th class="text-center text-success fw-bold">Nama Komoditas</th>
@@ -137,6 +140,9 @@
                                         <th class="text-center text-success fw-bold">Tanam Hasil</th>
                                         <th class="text-center text-success fw-bold">Produksi</th>
                                         <th class="text-center text-success fw-bold">Provitas</th>
+                                        <th class="text-center text-success fw-bold">Harga Produsen</th>
+                                        <th class="text-center text-success fw-bold">Harga Grosir</th>
+                                        <th class="text-center text-success fw-bold">Harga Eceran</th>
                                         <th class="text-center text-success fw-bold">Aksi</th>
                                     </thead>
                                     <tbody>
@@ -151,6 +157,9 @@
                                                 <td>{{$fruit->tanam_hasil}}</td>
                                                 <td>{{$fruit->jumlah_produksi}}</td>
                                                 <td>{{$fruit->provitas}}</td>
+                                                <td>{{$fruit->harga_produsen}}</td>
+                                                <td>{{$fruit->harga_grosir}}</td>
+                                                <td>{{$fruit->harga_eceran}}</td>
                                                 <td class="text-nowrap">
                                                     <a href="#" data-id="{{$fruit->id}}" data-link="{{route('laporan.update', $fruit->id)}}" class="btn btn-success btn-edit">Edit</a>
                                                     <a href="#" data-link="{{route('laporan.destroy', $fruit->id)}}" class="btn btn-danger btn-delete">Hapus</a>
@@ -162,7 +171,7 @@
                             </div>
                         </section>
                         <section id="sayur" class="tab-panel">
-                            <div class="content" style="overflow-x:auto;">
+                            <div class="content">
                                 <table class="table table-sayur table-hover">
                                     <thead>
                                         <th class="text-center text-success fw-bold">No</th>
@@ -171,6 +180,9 @@
                                         <th class="text-center text-success fw-bold">Tanam Hasil</th>
                                         <th class="text-center text-success fw-bold">Produksi</th>
                                         <th class="text-center text-success fw-bold">Provitas</th>
+                                        <th class="text-center text-success fw-bold">Harga Produsen</th>
+                                        <th class="text-center text-success fw-bold">Harga Grosir</th>
+                                        <th class="text-center text-success fw-bold">Harga Eceran</th>
                                         <th class="text-center text-success fw-bold">Aksi</th>
                                     </thead>
                                     <tbody>
@@ -185,6 +197,9 @@
                                                 <td>{{$vegetable->tanam_hasil}}</td>
                                                 <td>{{$vegetable->jumlah_produksi}}</td>
                                                 <td>{{$vegetable->provitas}}</td>
+                                                <td>{{$vegetable->harga_produsen}}</td>
+                                                <td>{{$vegetable->harga_grosir}}</td>
+                                                <td>{{$vegetable->harga_eceran}}</td>
                                                 <td class="text-nowrap">
                                                     <a href="#" data-id="{{$vegetable->id}}" data-link="{{route('laporan.update', $vegetable->id)}}" class="btn btn-success btn-edit">Edit</a>
                                                     <a href="#" data-link="{{route('laporan.destroy', $vegetable->id)}}" class="btn btn-danger btn-delete">Hapus</a>
@@ -196,7 +211,7 @@
                             </div>
                         </section>
                         <section id="biofarmaka" class="tab-panel">
-                            <div class="content" style="overflow-x:auto;">
+                            <div class="content">
                                 <table class="table table-biofarmaka table-hover">
                                     <thead>
                                         <th class="text-center text-success fw-bold">No</th>
@@ -205,6 +220,9 @@
                                         <th class="text-center text-success fw-bold">Tanam Hasil</th>
                                         <th class="text-center text-success fw-bold">Produksi</th>
                                         <th class="text-center text-success fw-bold">Provitas</th>
+                                        <th class="text-center text-success fw-bold">Harga Produsen</th>
+                                        <th class="text-center text-success fw-bold">Harga Grosir</th>
+                                        <th class="text-center text-success fw-bold">Harga Eceran</th>
                                         <th class="text-center text-success fw-bold">Aksi</th>
                                     </thead>
                                     <tbody>
@@ -219,6 +237,9 @@
                                                 <td>{{$biopharmaceuticals->tanam_hasil}}</td>
                                                 <td>{{$biopharmaceuticals->jumlah_produksi}}</td>
                                                 <td>{{$biopharmaceuticals->provitas}}</td>
+                                                <td>{{$biopharmaceuticals->harga_produsen}}</td>
+                                                <td>{{$biopharmaceuticals->harga_grosir}}</td>
+                                                <td>{{$biopharmaceuticals->harga_eceran}}</td>
                                                 <td class="text-nowrap">
                                                     <a href="#" data-id="{{$biopharmaceuticals->id}}" data-link="{{route('laporan.update', $biopharmaceuticals->id)}}" class="btn btn-success btn-edit">Edit</a>
                                                     <a href="#" data-link="{{route('laporan.destroy', $biopharmaceuticals->id)}}" class="btn btn-danger btn-delete">Hapus</a>
@@ -230,7 +251,7 @@
                             </div>
                         </section>
                         <section id="verifikasi" class="tab-panel">
-                            <div class="content" style="overflow-x:auto;">
+                            <div class="content">
                                 <table class="table table-verifikasi table-hover">
                                     <thead>
                                         <th class="text-center text-success fw-bold">No</th>
@@ -239,6 +260,9 @@
                                         <th class="text-center text-success fw-bold">Tanam Hasil</th>
                                         <th class="text-center text-success fw-bold">Produksi</th>
                                         <th class="text-center text-success fw-bold">Provitas</th>
+                                        <th class="text-center text-success fw-bold">Harga Produsen</th>
+                                        <th class="text-center text-success fw-bold">Harga Grosir</th>
+                                        <th class="text-center text-success fw-bold">Harga Eceran</th>
                                         <th class="text-center text-success fw-bold">Aksi</th>
                                     </thead>
                                     <tbody>
@@ -253,6 +277,9 @@
                                                 <td>{{$not_verified->tanam_hasil}}</td>
                                                 <td>{{$not_verified->jumlah_produksi}}</td>
                                                 <td>{{$not_verified->provitas}}</td>
+                                                <td>{{$not_verified->harga_produsen}}</td>
+                                                <td>{{$not_verified->harga_grosir}}</td>
+                                                <td>{{$not_verified->harga_eceran}}</td>
                                                 <td><a href="javascript::void(0)" data-link="{{route('verify-laporan',$not_verified->id)}}" class="btn btn-success btn-verify">Verifikasi</a></td>
                                             </tr>
                                         @endforeach
@@ -487,10 +514,10 @@
         </div>
       </div>
     <script>
-        var tableBuah = $('.table-buah').DataTable({});
-        var tableSayur = $('.table-sayur').DataTable({});
-        var tableSayur = $('.table-biofarmaka').DataTable({});
-        var tableVerifikasi = $('.table-verifikasi').DataTable({});
+        var tableBuah = $('.table-buah').DataTable({responsive: true});
+        var tableSayur = $('.table-sayur').DataTable({responsive: true});
+        var tableSayur = $('.table-biofarmaka').DataTable({responsive: true});
+        var tableVerifikasi = $('.table-verifikasi').DataTable({responsive: true});
 
         $(".btn-create").on("click", function()
         {
