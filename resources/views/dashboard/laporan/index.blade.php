@@ -82,6 +82,7 @@
 
         .dataTables_wrapper .row{
             overflow-x: auto !important;
+            max-width: 100%;
         }
         
     </style>
