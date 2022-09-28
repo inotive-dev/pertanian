@@ -19,6 +19,18 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
+        $data['years'] = [];
+        $allLaporan = Laporan::select(['created_at'])->orderBy('created_at','DESC')->get();
+        foreach ($allLaporan as $key => $value) {
+            if (!in_array($value->created_at->year,$data['years'])) {
+                $data['years'][] = $value->created_at->year;
+            }
+        }
+        // dd($data['years']);
+        $data['selectedYear'] = $data['years'][0] ?? null;
+        if ($request->year) {
+            $data['selectedYear'] = $request->year;
+        }
         
         $wilayahArray = null;
         $sumKategoryPerWilayah = null;

@@ -266,26 +266,27 @@
                 
             </div>
             <hr>
-            <div class="legend row" style="padding: 3em">
-                <div class="col-sm-2">
-                    <i class="fa fa-circle text-info"></i> Harga Produsen
+            <div style=" overflow-x:auto;">
+                <div class="legend row" style="padding: 3em;">
+                    <div class="col-sm-2">
+                        <i class="fa fa-circle text-info"></i> Harga Produsen
+                    </div>
+                    <div class="col-sm-2">
+                        <i class="fa fa-circle text-danger"></i> Harga Grosir
+                    </div>
+                    <div class="col-sm-2">
+                        <i class="fa fa-circle text-warning"></i> Harga Eceran
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <select class="select-tahun" name="tahun" id="select-tahun">
+                            @foreach ($years as $year)
+                                <option value="{{$year}}" {{$selectedYear == $year ? 'selected' : ''}}>{{$year}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
-                <div class="col-sm-2">
-                    <i class="fa fa-circle text-danger"></i> Harga Grosir
-                </div>
-                <div class="col-sm-2">
-                    <i class="fa fa-circle text-warning"></i> Harga Eceran
-                </div>
-                <div class="col-sm-6 text-right">
-                    <select class="select-tahun" name="tahun" id="select-tahun">
-                        <option value="2019" {{$year == '2019' ? 'selected' : ''}}>2019</option>
-                        <option value="2020" {{$year == '2020' ? 'selected' : ''}}>2020</option>
-                        <option value="2021" {{$year == '2021' ? 'selected' : ''}}>2021</option>
-                        <option value="2022" {{$year == '2022' ? 'selected' : ''}}>2022</option>
-                    </select>
-                </div>
+                <div id="chartActivity" class="ct-chart ct-perfect-fourth" style="margin-left: 5em"></div>
             </div>
-            <div id="chartActivity" class="ct-chart ct-perfect-fourth" style="margin-left: 5em"></div>
         </div>
     </div>
     <script>

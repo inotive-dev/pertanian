@@ -248,7 +248,7 @@
                 success: function (data, status, xhr) {
                     if ( Object.keys(data).length > 0) {
                         alert('Email sudah digunakan');
-                        $(this).val('')
+                        $("#email").val('')
                     }
                 }
             });

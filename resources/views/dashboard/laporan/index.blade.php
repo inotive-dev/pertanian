@@ -63,14 +63,14 @@
         margin-bottom: -1px;
         }
 
-        .tab-panel {
+        /* .tab-panel {
         padding: 30px 0;
         border-top: 1px solid #ccc;
         }
 
         .tabset {
         max-width: 65em;
-        }
+        } */
 
         .select2.select2-container.select2-container--default.select2-container--below.select2-container--focus {
             width: 100%;
@@ -79,6 +79,8 @@
         .select2-container--default {
             width: 100% !important;
         }
+
+        
     </style>
 
     <div class="row">
@@ -86,11 +88,27 @@
             <h4 class="fw-bold">Laporan</h4>
         </div>
         
-        <div class="col-md-6 text-right">
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-md-1" style="margin-top: 5px">
+                    Tahun 
+                </div>
+                <div class="col-md-11">
+                    <select class="select-tahun form-control" name="tahun" id="select-tahun" style="max-width: 10em">
+                        @foreach ($years as $year)
+                            <option value="{{$year}}" {{$selectedYear == $year ? 'selected' : ''}}>{{$year}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 text-right">
             <button class="btn btn-success btn-create">Tambah</button>
         </div>
     </div>
-    <div class="row">
+    <div class="row" style="margin-top: 10px">
         <div class="col-md-12">
             
             <div class="card">
@@ -110,7 +128,7 @@
                     
                     <div class="tab-panels">
                         <section id="buah" class="tab-panel">
-                            <div class="content">
+                            <div class="content" style="overflow-x:auto;">
                                 <table class="table table-buah table-hover">
                                     <thead>
                                         <th class="text-center text-success fw-bold">No</th>
@@ -144,7 +162,7 @@
                             </div>
                         </section>
                         <section id="sayur" class="tab-panel">
-                            <div class="content">
+                            <div class="content" style="overflow-x:auto;">
                                 <table class="table table-sayur table-hover">
                                     <thead>
                                         <th class="text-center text-success fw-bold">No</th>
@@ -178,7 +196,7 @@
                             </div>
                         </section>
                         <section id="biofarmaka" class="tab-panel">
-                            <div class="content">
+                            <div class="content" style="overflow-x:auto;">
                                 <table class="table table-biofarmaka table-hover">
                                     <thead>
                                         <th class="text-center text-success fw-bold">No</th>
@@ -212,7 +230,7 @@
                             </div>
                         </section>
                         <section id="verifikasi" class="tab-panel">
-                            <div class="content">
+                            <div class="content" style="overflow-x:auto;">
                                 <table class="table table-verifikasi table-hover">
                                     <thead>
                                         <th class="text-center text-success fw-bold">No</th>
@@ -601,5 +619,10 @@
             rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
             return prefix == undefined ? rupiah : (rupiah ? '' + rupiah : '');
         }
+        
+        $("#select-tahun" ).change(function() {
+            var tahun = $(this).val();
+            window.location = "{{route('laporan.index')}}?select_year="+tahun;
+        });
     </script>
 </x-app-layout>

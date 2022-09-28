@@ -134,10 +134,13 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
+                            
                         <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <p>
-                                        <span><img src="/images/logo.png" alt="logo-pertanian" width="80px" style="border-radius: 50%"></span>
+                                        <span >
+                                            <img src="/images/logo.png" alt="logo-pertanian" width="40" style="border-radius: 100% !important; overflow:hidden; display:inline-block; width: 40px; height: auto;">
+                                        </span>
 										<span>Super Admin</span>
 										<b class="caret"></b>
 									</p>
@@ -161,7 +164,7 @@
         </div>
 
 
-        <footer class="footer">
+        {{-- <footer class="footer">
             <div class="container-fluid">
                 <nav class="pull-left">
                     <ul>
@@ -190,7 +193,7 @@
                 <p class="copyright pull-right">
                     &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
                 </p>
-            </div>
+            </div> --}}
         </footer>
 
     </div>

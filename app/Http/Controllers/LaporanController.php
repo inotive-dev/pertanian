@@ -17,26 +17,51 @@ class LaporanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $data['years'] = [];
+        $allLaporan = Laporan::select(['created_at'])->orderBy('created_at','DESC')->get();
+        foreach ($allLaporan as $key => $value) {
+            if (!in_array($value->created_at->year,$data['years'])) {
+                $data['years'][] = $value->created_at->year;
+            }
+        }
+        // dd($data['years']);
+        $data['selectedYear'] = $data['years'][0] ?? null;
+        if ($request->select_year) {
+            $data['selectedYear'] = $request->select_year;
+        }
+        $selectedYear = $data['selectedYear'];
         $data['villages'] = Village::all();
         $data['comodities'] = Comodity::all();
         $data['not_verifieds'] = Laporan::where('is_verified',0)
+        ->when($selectedYear, function($q) use($selectedYear){
+            $q->whereYear('created_at',$selectedYear);
+        })
         ->with('comodity','village')
         ->get();
         $data['fruits'] = Laporan::where('is_verified',1)
+        ->when($selectedYear, function($q) use($selectedYear){
+            $q->whereYear('created_at',$selectedYear);
+        })
         ->wherehas('comodity', function($q){
             $q->where('type','buah');
         })
         ->with('comodity','village')
         ->get();
         $data['vegetables'] = Laporan::where('is_verified',1)
+        ->when($selectedYear, function($q) use($selectedYear){
+            $q->whereYear('created_at',$selectedYear);
+        })
         ->wherehas('comodity', function($q){
             $q->where('type','sayur');
         })
         ->with('comodity','village')
         ->get();
         $data['biopharmaceuticals'] = Laporan::where('is_verified',1)
+        ->when($selectedYear, function($q) use($selectedYear){
+            $q->whereYear('created_at',$selectedYear);
+        })
         ->wherehas('comodity', function($q){
             $q->where('type','biofarmaka');
         })
