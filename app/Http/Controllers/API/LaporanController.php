@@ -8,6 +8,7 @@ use App\Models\Laporan;
 use App\Models\Village;
 use App\Models\User;
 use App\Models\Comodity;
+use App\Models\Notification;
 use Validator;
 use Auth;
 
@@ -15,6 +16,7 @@ class LaporanController extends Controller
 {
     public function storeLaporan(Request $request){
         
+        $desa = Village::findOrFail($request->desa);
         $validator = Validator::make($request->all(), [
             'desa' => 'required',
             'komoditas' => 'required',
@@ -49,6 +51,13 @@ class LaporanController extends Controller
             'harga_produsen' => str_replace('.','',$request->harga_produsen),
             'harga_grosir' => str_replace('.','',$request->harga_grosir),
             'harga_eceran' => str_replace('.','',$request->harga_eceran),
+        ]);
+
+        Notification::create([
+            'user_id' => Auth::user()->id,
+            'title' => 'Laporan baru',
+            'body' => 'Silahkan cek laporan baru dari desa ' . $desa->name,
+            'link' => '/laporan',
         ]);
 
         return response()->json([

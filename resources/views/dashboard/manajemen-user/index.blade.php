@@ -1,4 +1,17 @@
 <x-app-layout title="Manajemen User">
+    <style>
+        
+        .form-group {
+        margin-bottom: 1rem
+        }
+        .select2.select2-container.select2-container--default.select2-container--below.select2-container--focus {
+            width: 100%;
+        }
+
+        .select2-container--default {
+            width: 100% !important;
+        }
+    </style>
     <div class="row">
         <div class="col-md-6">
             <h4 class="fw-bold">Manajemen User</h4>
@@ -7,11 +20,11 @@
             <button class="btn btn-success btn-create">Tambah</button>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-md-12">
             <div class="card">
                 
-                <div class="content table-responsive table-full-width">
+                <div class="content table-responsive table-full-width p-2">
                     <table class="table table-hover">
                         <thead>
                             <th class="text-center text-success fw-bold">No</th>
@@ -66,12 +79,13 @@
               </button>
             </div>
             
-            <form action="{{route('manajemen-user.store')}}" method="POST">
+            <form action="{{route('manajemen-user.store')}}" method="POST" autocomplete="off">
                 @csrf
                 <div class="modal-body">
                         <div class="form-group">
                             <label>Kecamatan <span class="text-danger">*</span></label>
-                            <select type="text" class="form-control" id="kecamatan-id" required name="kecamatan">
+                            <br>
+                            <select type="text" class="form-control select-kecamatan" id="kecamatan-id" required name="kecamatan">
                                 <option value="">--Pilih kecamatan--</option>
                                 @foreach ($kecamatans as $kecamatan)
                                     <option value="{{$kecamatan->id}}">{{$kecamatan->name}}</option>
@@ -93,7 +107,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Email <span class="text-danger">*</span></label>
-                            <input name="email" type="email" class="form-control" id="email" placeholder="Masukkan email" required>
+                            <input name="email" type="email" onchange="emailCheck();" class="form-control" id="email" placeholder="Masukkan email" required>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password <span class="text-danger">*</span></label>
@@ -119,13 +133,14 @@
               </button>
             </div>
             
-            <form id="edit-form" method="POST">
+            <form id="edit-form" method="POST" autocomplete="off">
                 @method('PUT')
                 @csrf
                 <div class="modal-body">
                         <div class="form-group">
                             <label>Kecamatan <span class="text-danger">*</span></label>
-                            <select type="text" class="form-control" id="kecamatan-edit" required name="kecamatan">
+                            <br>
+                            <select type="text" class="form-control select-kecamatan-edit" id="kecamatan-edit" required name="kecamatan">
                                 <option value="">--Pilih kecamatan--</option>
                             </select>
                         </div>
@@ -141,7 +156,7 @@
                         </div>
                         <div class="form-group">
                             <label>Email <span class="text-danger">*</span></label>
-                            <input readonly name="email" type="email" class="form-control" id="email-edit" aria-describedby="emailHelp" placeholder="Masukkan email" required>
+                            <input readonly name="email" onchange="emailEditCheck();" type="email" class="form-control" id="email-edit" aria-describedby="emailHelp" placeholder="Masukkan email" required>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
@@ -182,6 +197,18 @@
         </div>
       </div>
     <script>
+        $(document).ready(function() {
+            $('.select-kecamatan').select2({
+                dropdownParent: $('#create-modal')
+            });
+            $('.select-kecamatan-edit').select2({
+                dropdownParent: $('#edit-modal')
+            });
+            $('.select-komoditas-edit').select2({
+                dropdownParent: $('#edit-modal')
+            });
+        });
+
         var table = $('.table').DataTable({});
         // create events
         $(".btn-create").on("click", function()
@@ -239,9 +266,9 @@
             $("#edit-modal").modal('show');
         });
 
-        $("#email").on("change", function()
+        function emailCheck()
         {
-            var email = $(this).val();
+            var email = $("#email").val();
             $.ajax('/email-available-check', {
                 type: 'GET',  // http method
                 data: { email: email },  // data to submit
@@ -252,10 +279,11 @@
                     }
                 }
             });
-        });
-        $("#email-edit").on("change", function()
+        };
+        
+        function emailEditCheck()
         {
-            var email = $(this).val();
+            var email = $("#email-edit").val();
             $.ajax('/email-available-check', {
                 type: 'GET',  // http method
                 data: { email: email },  // data to submit
@@ -263,11 +291,11 @@
                     if ( Object.keys(data).length > 0) {
                         console.log('masuk')
                         alert('Email sudah digunakan');
-                        $(this).val('')
+                        $("#email-edit").val('')
                     }
                 }
             });
-        });
+        };
 
     </script>
 </x-app-layout>

@@ -8,9 +8,9 @@
             left: -200vw;
         }
 
-        .tab-panels  {
+        /* .tab-panels  {
             width: 75vw !important;
-        }
+        } */
 
         .tabset .tab-panel {
          display: none;
@@ -63,27 +63,27 @@
         margin-bottom: -1px;
         }
 
-        /* .tab-panel {
-        padding: 30px 0;
-        border-top: 1px solid #ccc;
+        .tab-panel {
+        padding: 30px 5px;
+        width: 100%;
         }
 
         .tabset {
         max-width: 65em;
-        } */
-
-        .select2.select2-container.select2-container--default.select2-container--below.select2-container--focus {
-            width: 100%;
         }
 
-        .select2-container--default {
-            width: 100% !important;
-        }
+            .select2.select2-container.select2-container--default.select2-container--below.select2-container--focus {
+                width: 100%;
+            }
 
-        .dataTables_wrapper .row{
+            .select2-container--default {
+                width: 100% !important;
+            }
+
+        /* .dataTables_wrapper .row{
             overflow-x: auto !important;
             max-width: 100%;
-        }
+        } */
         
     </style>
 
@@ -95,12 +95,12 @@
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <div class="row">
-                <div class="col-md-1" style="margin-top: 5px">
+            <div class="d-flex">
+                <div style="margin-top: 3px">
                     Tahun 
                 </div>
-                <div class="col-md-11">
-                    <select class="select-tahun form-control" name="tahun" id="select-tahun" style="max-width: 10em">
+                <div style="margin-left: 7px">
+                    <select class="select-tahun js-example-basic-single " name="tahun" id="select-tahun" style="width: 120px">
                         @foreach ($years as $year)
                             <option value="{{$year}}" {{$selectedYear == $year ? 'selected' : ''}}>{{$year}}</option>
                         @endforeach
@@ -162,8 +162,8 @@
                                                 <td>{{$fruit->harga_grosir}}</td>
                                                 <td>{{$fruit->harga_eceran}}</td>
                                                 <td class="text-nowrap">
-                                                    <a href="#" data-id="{{$fruit->id}}" data-link="{{route('laporan.update', $fruit->id)}}" class="btn btn-success btn-edit">Edit</a>
-                                                    <a href="#" data-link="{{route('laporan.destroy', $fruit->id)}}" class="btn btn-danger btn-delete">Hapus</a>
+                                                    <a href="#" data-id="{{$fruit->id}}" data-link="{{route('laporan.update', $fruit->id)}}" style="text-decoration: none; color: green" class="btn-edit">Edit</a>
+                                                    <a href="#" data-link="{{route('laporan.destroy', $fruit->id)}}" class="btn-delete" style="text-decoration: none; color: rgba(0, 0, 0, 0.625);">Hapus</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -202,8 +202,8 @@
                                                 <td>{{$vegetable->harga_grosir}}</td>
                                                 <td>{{$vegetable->harga_eceran}}</td>
                                                 <td class="text-nowrap">
-                                                    <a href="#" data-id="{{$vegetable->id}}" data-link="{{route('laporan.update', $vegetable->id)}}" class="btn btn-success btn-edit">Edit</a>
-                                                    <a href="#" data-link="{{route('laporan.destroy', $vegetable->id)}}" class="btn btn-danger btn-delete">Hapus</a>
+                                                    <a href="#" data-id="{{$vegetable->id}}" data-link="{{route('laporan.update', $vegetable->id)}}" class="btn-edit"  style="text-decoration: none; color: green">Edit</a>
+                                                    <a href="#" data-link="{{route('laporan.destroy', $vegetable->id)}}" class="btn-delete" style="text-decoration: none; color: rgba(0, 0, 0, 0.625);">Hapus</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -242,8 +242,8 @@
                                                 <td>{{$biopharmaceuticals->harga_grosir}}</td>
                                                 <td>{{$biopharmaceuticals->harga_eceran}}</td>
                                                 <td class="text-nowrap">
-                                                    <a href="#" data-id="{{$biopharmaceuticals->id}}" data-link="{{route('laporan.update', $biopharmaceuticals->id)}}" class="btn btn-success btn-edit">Edit</a>
-                                                    <a href="#" data-link="{{route('laporan.destroy', $biopharmaceuticals->id)}}" class="btn btn-danger btn-delete">Hapus</a>
+                                                    <a href="#" data-id="{{$biopharmaceuticals->id}}" data-link="{{route('laporan.update', $biopharmaceuticals->id)}}" class="btn-edit" style="text-decoration: none; color: green">Edit</a>
+                                                    <a href="#" data-link="{{route('laporan.destroy', $biopharmaceuticals->id)}}" class="btn-delete" style="text-decoration: none; color: rgba(0, 0, 0, 0.625);">Hapus</a>
                                                 </td>
                                             </tr>
                                         @endforeach

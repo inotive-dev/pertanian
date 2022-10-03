@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth','rolechecker:Super Admin']], function () {
 
     Route::resource('laporan', LaporanController::class);
     Route::get('/verify-laporan/{id}',[LaporanController::class,'verifyLaporan'])->name('verify-laporan');
+    Route::get('/read-norification',[LaporanController::class,'readNotification'])->name('laporan.read-all-notifications');
     Route::get('/get-detail-laporan',[LaporanController::class,'getDetail'])->name('laporan.get-detail-laporan');
 
     Route::resource('dashboard', DashboardController::class);

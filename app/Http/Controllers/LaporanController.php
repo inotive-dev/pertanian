@@ -9,6 +9,7 @@ use App\Models\Laporan;
 use App\Models\Village;
 use App\Models\User;
 use App\Models\Comodity;
+use App\Models\Notification;
 
 class LaporanController extends Controller
 {
@@ -88,6 +89,8 @@ class LaporanController extends Controller
      */
     public function store(Request $request)
     {
+        
+        $desa = Village::findOrFail($request->desa);
         Laporan::create([
             'user_id' => Auth::user()->id,
             'desa_id' => $request->desa,
@@ -99,6 +102,13 @@ class LaporanController extends Controller
             'harga_produsen' => str_replace('.','',$request->harga_produsen),
             'harga_grosir' => str_replace('.','',$request->harga_grosir),
             'harga_eceran' => str_replace('.','',$request->harga_eceran),
+        ]);
+
+        Notification::create([
+            'user_id' => Auth::user()->id,
+            'title' => 'Laporan baru',
+            'body' => 'Silahkan cek laporan baru dari desa ' . $desa->name,
+            'link' => '/laporan',
         ]);
 
         return redirect()->back()->with('OK','Berhasil menambahkan laporan');
@@ -186,5 +196,15 @@ class LaporanController extends Controller
         $data['comodities'] = Comodity::all();
         $data['villages'] = Village::all();
         return response()->json($data, 200);
+    }
+
+    public function readNotification()
+    {
+        $notifications = Notification::all();
+        foreach ($notifications as $key => $value) {
+            $value->update([
+                'is_readed' => 1
+            ]);
+        }
     }
 }

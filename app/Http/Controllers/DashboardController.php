@@ -36,11 +36,10 @@ class DashboardController extends Controller
         $sumKategoryPerWilayah = null;
         $colorArray = null;
 
-        $wilayah = 'kecamatan';
+        $currentWilayah = 'kecamatan';
         if ($request->wilayah) {
-            $wilayah = $request->wilayah;
+            $currentWilayah = $request->wilayah;
         }
-        $data['wilayah'] = $wilayah;
         $data['laporans'] = Laporan::where('is_verified',1)
         ->with('comodity','village')
         ->get();
@@ -61,7 +60,7 @@ class DashboardController extends Controller
             $type = $request->type;
         }
 
-        if ($wilayah == 'kecamatan') {
+        if ($currentWilayah == 'kecamatan') {
             $wilayahCollection = Kecamatan::with('villages')->get();
             foreach ($wilayahCollection as $key => $wilayah) {
                 $wilayahArray[] = $wilayah->name;
@@ -124,6 +123,8 @@ class DashboardController extends Controller
         $data['sumKategoryPerWilayah'] = $sumKategoryPerWilayah;
         $data['colorArray'] = $colorArray;
         $data['arrKomoditas'] = $arrKomoditas;
+        
+        $data['currentWilayah'] = $currentWilayah;
         // dd($data);
         return view('dashboard.dashboard.index',$data);
     }
