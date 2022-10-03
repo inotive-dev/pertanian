@@ -1,4 +1,12 @@
 <x-app-layout title="Saran">
+    @php
+        function rupiah($angka){
+	
+            $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+            return $hasil_rupiah;
+        
+        }
+    @endphp
     <style>
         /*
         CSS for the main interaction
@@ -80,10 +88,10 @@
                 width: 100% !important;
             }
 
-        /* .dataTables_wrapper .row{
+        .dataTables_wrapper .row{
             overflow-x: auto !important;
-            max-width: 100%;
-        } */
+            /* max-width: 100%; */
+        }
         
     </style>
 
@@ -158,9 +166,9 @@
                                                 <td>{{$fruit->tanam_hasil}}</td>
                                                 <td>{{$fruit->jumlah_produksi}}</td>
                                                 <td>{{$fruit->provitas}}</td>
-                                                <td>{{$fruit->harga_produsen}}</td>
-                                                <td>{{$fruit->harga_grosir}}</td>
-                                                <td>{{$fruit->harga_eceran}}</td>
+                                                <td>{{$fruit->harga_produsen ? rupiah($fruit->harga_produsen) : 0}}</td>
+                                                <td>{{$fruit->harga_grosir ? rupiah($fruit->harga_grosir) : 0}}</td>
+                                                <td>{{$fruit->harga_eceran ? rupiah($fruit->harga_eceran) : 0}}</td>
                                                 <td class="text-nowrap">
                                                     <a href="#" data-id="{{$fruit->id}}" data-link="{{route('laporan.update', $fruit->id)}}" style="text-decoration: none; color: green" class="btn-edit">Edit</a>
                                                     <a href="#" data-link="{{route('laporan.destroy', $fruit->id)}}" class="btn-delete" style="text-decoration: none; color: rgba(0, 0, 0, 0.625);">Hapus</a>
@@ -198,9 +206,9 @@
                                                 <td>{{$vegetable->tanam_hasil}}</td>
                                                 <td>{{$vegetable->jumlah_produksi}}</td>
                                                 <td>{{$vegetable->provitas}}</td>
-                                                <td>{{$vegetable->harga_produsen}}</td>
-                                                <td>{{$vegetable->harga_grosir}}</td>
-                                                <td>{{$vegetable->harga_eceran}}</td>
+                                                <td>{{$vegetable->harga_produsen ? rupiah($vegetable->harga_produsen) : 0}}</td>
+                                                <td>{{$vegetable->harga_grosir ? rupiah($vegetable->harga_grosir) : 0}}</td>
+                                                <td>{{$vegetable->harga_eceran ? rupiah($vegetable->harga_eceran) : 0}}</td>
                                                 <td class="text-nowrap">
                                                     <a href="#" data-id="{{$vegetable->id}}" data-link="{{route('laporan.update', $vegetable->id)}}" class="btn-edit"  style="text-decoration: none; color: green">Edit</a>
                                                     <a href="#" data-link="{{route('laporan.destroy', $vegetable->id)}}" class="btn-delete" style="text-decoration: none; color: rgba(0, 0, 0, 0.625);">Hapus</a>
@@ -238,9 +246,9 @@
                                                 <td>{{$biopharmaceuticals->tanam_hasil}}</td>
                                                 <td>{{$biopharmaceuticals->jumlah_produksi}}</td>
                                                 <td>{{$biopharmaceuticals->provitas}}</td>
-                                                <td>{{$biopharmaceuticals->harga_produsen}}</td>
-                                                <td>{{$biopharmaceuticals->harga_grosir}}</td>
-                                                <td>{{$biopharmaceuticals->harga_eceran}}</td>
+                                                <td>{{$biopharmaceuticals->harga_produsen ? rupiah($biopharmaceuticals->harga_produsen) : 0}}</td>
+                                                <td>{{$biopharmaceuticals->harga_grosir ? rupiah($biopharmaceuticals->harga_grosir) : 0}}</td>
+                                                <td>{{$biopharmaceuticals->harga_eceran ? rupiah($biopharmaceuticals->harga_eceran) : 0}}</td>
                                                 <td class="text-nowrap">
                                                     <a href="#" data-id="{{$biopharmaceuticals->id}}" data-link="{{route('laporan.update', $biopharmaceuticals->id)}}" class="btn-edit" style="text-decoration: none; color: green">Edit</a>
                                                     <a href="#" data-link="{{route('laporan.destroy', $biopharmaceuticals->id)}}" class="btn-delete" style="text-decoration: none; color: rgba(0, 0, 0, 0.625);">Hapus</a>
@@ -278,9 +286,9 @@
                                                 <td>{{$not_verified->tanam_hasil}}</td>
                                                 <td>{{$not_verified->jumlah_produksi}}</td>
                                                 <td>{{$not_verified->provitas}}</td>
-                                                <td>{{$not_verified->harga_produsen}}</td>
-                                                <td>{{$not_verified->harga_grosir}}</td>
-                                                <td>{{$not_verified->harga_eceran}}</td>
+                                                <td>{{$not_verified->harga_produsen ? rupiah($not_verified->harga_produsen) : 0}}</td>
+                                                <td>{{$not_verified->harga_grosir ? rupiah($not_verified->harga_grosir) : 0}}</td>
+                                                <td>{{$not_verified->harga_eceran ? rupiah($not_verified->harga_eceran) : 0}}</td>
                                                 <td><a href="javascript::void(0)" data-link="{{route('verify-laporan',$not_verified->id)}}" class="btn btn-success btn-verify">Verifikasi</a></td>
                                             </tr>
                                         @endforeach

@@ -82,6 +82,9 @@
     .form-group {
       margin-bottom: 0rem
     }
+    .content {
+      overflow-x: hidden;
+    }
   </style>
 </head>
 <body>
