@@ -4,14 +4,19 @@
         /*
         CSS for the main interaction
         */
+        
+        .form-group {
+        margin-bottom: 1rem
+        }
+
         .tabset > input[type="radio"] {
             position: absolute;
             left: -200vw;
         }
 
-        .tab-panels  {
+        /* .tab-panels  {
             width: 75vw !important;
-        }
+        } */
 
         .tabset .tab-panel {
          display: none;
