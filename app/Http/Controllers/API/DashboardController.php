@@ -119,7 +119,7 @@ class DashboardController extends Controller
         $r = rand(0, 255);
         $g = rand(0, 255);
         $b = rand(0, 255);
-        $currentColor = "rgb($r, $g, $b)";
+        $currentColor = [$r, $g, $b, 1];
         // if (in_array($currentColor,$colorArray)) {
         //     $this->random_rgb_color();
         // } else {
